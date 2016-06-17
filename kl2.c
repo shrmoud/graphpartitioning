@@ -22,8 +22,6 @@ int main(int argc, char ** argv){
 			int num1, num2 ;
 			char *saveptr ;
 			char *str1 = strtok_r(line, " \t\v\f\r", &saveptr), *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr)  ;
-			char *str3, *str4, *str5;
-
 			if(str1 != NULL && str2 != NULL ){
 				num1 = atoi( str1 );
 				num2 = atoi( str2 );
@@ -37,10 +35,6 @@ int main(int argc, char ** argv){
 			  num1 +=1;
 			  num2 +=1;
 			}
-			//  *str3 = itoa(num1);
-			//  *str4 = itoa(num2);
-			//  *str5 = *str3 + " "+ *str4;
-			//*str5 = num1 + " " + num2;
 			fprintf(output,"%d  %d",num1,num2);
 			  fprintf(output,"\n");
 			  line_n += 1 ;

@@ -460,8 +460,8 @@ int main(int argc, char ** argv){
 		double diff;
 		partition(G, a, b);
 		diff =(double) (clock() - start)/CLOCKS_PER_SEC;
-		printf("\ncut size: %d \n", cut(G, a, b, stdout)) ;
-		printf("\n The total times taken to run: %f \n",diff);
+		printf("\nCut size: %d \n", cut(G, a, b, stdout)) ;
+		printf("\nThe total times taken to run: %f \n",diff);
 		free(a) ; 
 		free(b) ; 
 		free_graph (G);
