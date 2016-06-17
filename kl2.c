@@ -11,7 +11,7 @@ int main(int argc, char ** argv){
 		int line_n = 0;
 
 		input = fopen(argv[1], "r");
-		output = fopen("total.txt","w");
+		output = fopen("test3.txt","w");
 
 
 		if (input == NULL){
@@ -32,8 +32,8 @@ int main(int argc, char ** argv){
 			
 			
 			if(line_n != 0){
-			  num1 +=10000;
-			  num2 +=10000;
+			  num1 +=1;
+			  num2 +=1;
 			}
 			fprintf(output,"%d  %d",num1,num2);
 			  fprintf(output,"\n");
