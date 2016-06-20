@@ -472,30 +472,31 @@ int main(int argc, char ** argv){
 
 		
 		while ((read = getline(&line, &len, input)) != -1) {
-			int num1, num2 ;
-			char *saveptr ;
-			char *str1 = strtok_r(line, " \t\v\f\r", &saveptr), *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr)  ;
-			if(str1 != NULL && str2 != NULL ){
-				num1 = atoi( str1 );
-				num2 = atoi( str2 );
-			}else{
-				continue;
-			}
-			
-
-			Vertex *v1, *v2 ;
-			elist[line_n][0] = line_n ;
-			elist[line_n][1] = 1 ;
-			epair[line_n][0] = num1 ;
-			epair[line_n][1] = num2 ;
-			v1 = vlist[num1] ;
-			v2 = vlist[num2] ;
-			add_adjacency_vertex(v1, v2->label, 1) ;
-			add_adjacency_vertex(v2, v1->label, 1) ;
-			vlist[v1->label] = v1 ;
-			vlist[v2->label] = v2 ;
-			
-			line_n += 1 ;
+		  
+		  int num1, num2 ;
+		  char *saveptr ;
+		  char *str1 = strtok_r(line, " \t\v\f\r", &saveptr), *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr)  ;
+		  if(str1 != NULL && str2 != NULL ){
+		    num1 = atoi( str1 );
+		    num2 = atoi( str2 );
+		  }else{
+		    continue;
+		  }
+		  
+		  
+		  Vertex *v1, *v2 ;
+		  elist[line_n][0] = line_n ;
+		  elist[line_n][1] = 1 ;
+		  epair[line_n][0] = num1 ;
+		  epair[line_n][1] = num2 ;
+		  v1 = vlist[num1] ;
+		  v2 = vlist[num2] ;
+		  add_adjacency_vertex(v1, v2->label, 1) ;
+		  add_adjacency_vertex(v2, v1->label, 1) ;
+		  vlist[v1->label] = v1 ;
+		  vlist[v2->label] = v2 ;
+		  
+		  line_n += 1 ;
 		}
 		G = new_graph(0, NULL);
 		G->V = V ;
