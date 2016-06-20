@@ -454,6 +454,8 @@ int main(int argc, char ** argv){
 		  exit(1);
 		}
 
+		rewind(input);
+
 		while ((read = getline(&line, &len, input)) != -1) {
 			int num1, num2 ;
 			char *saveptr ;
