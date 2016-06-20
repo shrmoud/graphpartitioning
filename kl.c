@@ -25,7 +25,7 @@ void input_gen(FILE *output, int D, int V){
  */
 int cut(Graph *G, Vertex *a[], Vertex *b[], FILE *output){ 
 	int 
-	(*cost)[G->V + 1] = (int (*)[G->V + 1])calloc(G->V + 1, sizeof *cost),//cost[G->V + 1][G->V + 1], 
+	(*cost)[G->V + 1] = (int (*)[G->V + 1])calloc(G->V + 1,sizeof *cost),//cost[G->V + 1][G->V + 1], 
 	i, j, total_cost ;
 	char *block = (char *)calloc(G->V + 1, sizeof *block) ; //block[G->V + 1] ;
 	Vertex *v1, *v2 ;
@@ -398,42 +398,84 @@ int main(int argc, char ** argv){
 		input = fopen(argv[1], "r");
 		if (input == NULL){
 			exit(EXIT_FAILURE);}
+		int min=0;
+		int max = 0;
+		int vertexcount = 0;
+		int edgecount = 0;
+		while((read = getline(&line, &len, input)) != -1) {
+		  char *saveptr ;
+		  char *str1 = strtok_r(line, " \t\v\f\r", &saveptr);
+		  char *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr);
+		  int num1, num2;
 
+		  //read some number pairs from file
+		  if(str1 != NULL && str2 != NULL ){
+		    num1 = atoi( str1 );
+		    num2 = atoi( str2 );
+		  }
+		  else
+		    continue;
+
+		  //find the max and min
+		  if(num1 < min) {
+		    min = num1;
+		  }
+		  if(num2 < min) {
+		    min = num2;
+		  }
+		  if(num1 > max) {
+		    max = num1;
+		  }
+		  if(num2 > max) {
+		    max = num2;
+		  }
+		  
+		  edgecount ++;
+		}
+		vertexcount = (max-min)+1;
+		rewind(input);
+		printf("Read %d vertices and %d edges\n", vertexcount, edgecount);
+
+		V = vertexcount;
+		E = edgecount;
+		vlist = (Vertex **)calloc(V + 1, sizeof(Vertex *)) ;
+		elist = (int (*)[2])calloc(E + 1, sizeof *elist) ;
+		epair = (int (*)[2])calloc(E + 1, sizeof *epair) ;
+		memset(elist, 0, sizeof *elist) ;
+		memset(epair, 0, sizeof *epair) ;
+		for(i = 0; i <= V; i++){
+		  vlist[i] = new_vertex(i);
+		}
+		
+		
+
+		
 		while ((read = getline(&line, &len, input)) != -1) {
-			int num1, num2 ;
-			char *saveptr ;
-			char *str1 = strtok_r(line, " \t\v\f\r", &saveptr), *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr)  ;
-			if(str1 != NULL && str2 != NULL ){
-				num1 = atoi( str1 );
-				num2 = atoi( str2 );
-			}else{
-				continue;
-			}
-			if(line_n == 0){
-				V = num1 ;
-				E = num2 ;
-				vlist = (Vertex **)calloc(V + 1, sizeof(Vertex *)) ;
-				elist = (int (*)[2])calloc(E + 1, sizeof *elist) ;
-				epair = (int (*)[2])calloc(E + 1, sizeof *epair) ;
-				memset(elist, 0, sizeof *elist) ;
-				memset(epair, 0, sizeof *epair) ;
-				for(i = 0; i <= V; i++){
-					vlist[i] = new_vertex(i);
-				}
-			}else{
-				Vertex *v1, *v2 ;
-				elist[line_n][0] = line_n ;
-				elist[line_n][1] = 1 ;
-				epair[line_n][0] = num1 ;
-				epair[line_n][1] = num2 ;
-				v1 = vlist[num1] ;
-				v2 = vlist[num2] ;
-				add_adjacency_vertex(v1, v2->label, 1) ;
-				add_adjacency_vertex(v2, v1->label, 1) ;
-				vlist[v1->label] = v1 ;
-				vlist[v2->label] = v2 ;
-			}
-			line_n += 1 ;
+		  int currentvertex;
+		  int num1, num2 ;
+		  char *saveptr ;
+		  char *str1 = strtok_r(line, " \t\v\f\r", &saveptr), *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr);
+		  if(str1 != NULL && str2 != NULL ){
+		    num1 = atoi( str1 );
+		    num2 = atoi( str2 );
+		  }else{
+		    continue;
+		  }
+		  
+		  
+		  Vertex *v1, *v2 ;
+		  elist[line_n][0] = line_n ;
+		  elist[line_n][1] = 1 ;
+		  epair[line_n][0] = num1 ;
+		  epair[line_n][1] = num2 ;
+		  v1 = vlist[num1] ;
+		  v2 = vlist[num2] ;
+		  add_adjacency_vertex(v1, v2->label, 1) ;
+		  add_adjacency_vertex(v2, v1->label, 1) ;
+		  vlist[v1->label] = v1 ;
+		  vlist[v2->label] = v2 ;
+		  
+		  line_n += 1 ;
 		}
 		G = new_graph(0, NULL);
 		G->V = V ;
