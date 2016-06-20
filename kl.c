@@ -456,6 +456,21 @@ int main(int argc, char ** argv){
 
 		rewind(input);
 
+
+		V = vertexcount;
+		E = edgecount;
+		vlist = (Vertex **)calloc(V + 1, sizeof(Vertex *)) ;
+		elist = (int (*)[2])calloc(E + 1, sizeof *elist) ;
+		epair = (int (*)[2])calloc(E + 1, sizeof *epair) ;
+		memset(elist, 0, sizeof *elist) ;
+		memset(epair, 0, sizeof *epair) ;
+		for(i = 0; i <= V; i++){
+		  vlist[i] = new_vertex(i);
+		}
+		
+		
+
+		
 		while ((read = getline(&line, &len, input)) != -1) {
 			int num1, num2 ;
 			char *saveptr ;
@@ -466,30 +481,20 @@ int main(int argc, char ** argv){
 			}else{
 				continue;
 			}
-			if(line_n == 0){
-				V = num1 ;
-				E = num2 ;
-				vlist = (Vertex **)calloc(V + 1, sizeof(Vertex *)) ;
-				elist = (int (*)[2])calloc(E + 1, sizeof *elist) ;
-				epair = (int (*)[2])calloc(E + 1, sizeof *epair) ;
-				memset(elist, 0, sizeof *elist) ;
-				memset(epair, 0, sizeof *epair) ;
-				for(i = 0; i <= V; i++){
-					vlist[i] = new_vertex(i);
-				}
-			}else{
-				Vertex *v1, *v2 ;
-				elist[line_n][0] = line_n ;
-				elist[line_n][1] = 1 ;
-				epair[line_n][0] = num1 ;
-				epair[line_n][1] = num2 ;
-				v1 = vlist[num1] ;
-				v2 = vlist[num2] ;
-				add_adjacency_vertex(v1, v2->label, 1) ;
-				add_adjacency_vertex(v2, v1->label, 1) ;
-				vlist[v1->label] = v1 ;
-				vlist[v2->label] = v2 ;
-			}
+			
+
+			Vertex *v1, *v2 ;
+			elist[line_n][0] = line_n ;
+			elist[line_n][1] = 1 ;
+			epair[line_n][0] = num1 ;
+			epair[line_n][1] = num2 ;
+			v1 = vlist[num1] ;
+			v2 = vlist[num2] ;
+			add_adjacency_vertex(v1, v2->label, 1) ;
+			add_adjacency_vertex(v2, v1->label, 1) ;
+			vlist[v1->label] = v1 ;
+			vlist[v2->label] = v2 ;
+			
 			line_n += 1 ;
 		}
 		G = new_graph(0, NULL);
