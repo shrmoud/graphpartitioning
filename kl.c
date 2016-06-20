@@ -25,7 +25,7 @@ void input_gen(FILE *output, int D, int V){
  */
 int cut(Graph *G, Vertex *a[], Vertex *b[], FILE *output){ 
 	int 
-	(*cost)[G->V + 1] = (int (*)[G->V + 1])calloc(G->V + 1, sizeof *cost),//cost[G->V + 1][G->V + 1], 
+	(*cost)[G->V + 1] = (int (*)[G->V + 1])calloc(G->V + 1,sizeof *cost),//cost[G->V + 1][G->V + 1], 
 	i, j, total_cost ;
 	char *block = (char *)calloc(G->V + 1, sizeof *block) ; //block[G->V + 1] ;
 	Vertex *v1, *v2 ;
@@ -402,7 +402,6 @@ int main(int argc, char ** argv){
 		int max = 0;
 		int vertexcount = 0;
 		int edgecount = 0;
-		int currentvertex=-1;
 		while((read = getline(&line, &len, input)) != -1) {
 		  char *saveptr ;
 		  char *str1 = strtok_r(line, " \t\v\f\r", &saveptr);
@@ -417,14 +416,6 @@ int main(int argc, char ** argv){
 		  else
 		    continue;
 
-		  //set the vertex starting number to 1 or 0
-		  //depending on dataset
-		  if(edgecount == 0) {
-		    if(num1 < num2)
-		      currentvertex = num1;
-		    else
-		      currentvertex = num2;
-		  }
 		  //find the max and min
 		  if(num1 < min) {
 		    min = num1;
@@ -438,24 +429,12 @@ int main(int argc, char ** argv){
 		  if(num2 > max) {
 		    max = num2;
 		  }
-		  //if we have a new unique vertex, increment the count
-		  if(num1 == currentvertex || num2 == currentvertex)
-		    {
-		      currentvertex++;
-		      vertexcount++;
-		    }
+		  
 		  edgecount ++;
 		}
-
-
-		if((max-min) != vertexcount) {
-		  printf("max was %d, min was %d, but vertexcount was %d\n", max, min, vertexcount);
-		  printf("THIS SHOULD NOT HAPPEN. Exiting.\n");
-		  exit(1);
-		}
-
+		vertexcount = (max-min)+1;
 		rewind(input);
-
+		printf("Read %d vertices and %d edges\n", vertexcount, edgecount);
 
 		V = vertexcount;
 		E = edgecount;
@@ -472,10 +451,10 @@ int main(int argc, char ** argv){
 
 		
 		while ((read = getline(&line, &len, input)) != -1) {
-		  
+		  int currentvertex;
 		  int num1, num2 ;
 		  char *saveptr ;
-		  char *str1 = strtok_r(line, " \t\v\f\r", &saveptr), *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr)  ;
+		  char *str1 = strtok_r(line, " \t\v\f\r", &saveptr), *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr);
 		  if(str1 != NULL && str2 != NULL ){
 		    num1 = atoi( str1 );
 		    num2 = atoi( str2 );
