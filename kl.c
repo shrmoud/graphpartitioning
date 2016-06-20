@@ -398,6 +398,35 @@ int main(int argc, char ** argv){
 		input = fopen(argv[1], "r");
 		if (input == NULL){
 			exit(EXIT_FAILURE);}
+		int min=0;
+		int max = 0;
+		while((read = getline(&line, &len, input)) != -1) {
+		  char *saveptr ;
+		  char *str1 = strtok_r(line, " \t\v\f\r", &saveptr);
+		  char *str2 = strtok_r(NULL, " \t\v\f\r", &saveptr);
+		  
+		  int num1, num2;
+		  if(str1 != NULL && str2 != NULL ){
+		    num1 = atoi( str1 );
+		    num2 = atoi( str2 );
+		  }
+		  else
+		    continue;
+
+		  //find the max and min
+		  if(num1 < min) {
+		    min = num1;
+		  }
+		  if(num2 < min) {
+		    min = num2;
+		  }
+		  if(num1 > max) {
+		    max = num1;
+		  }
+		  if(num2 > max) {
+		    max = num2;
+		  }  
+		}
 
 		while ((read = getline(&line, &len, input)) != -1) {
 			int num1, num2 ;
