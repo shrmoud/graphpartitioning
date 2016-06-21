@@ -1,0 +1,25 @@
+Initial cut size:	4048 
+Pass:	0	Gain:	1624
+Pass:	1	Gain:	488
+Pass:	2	Gain:	56
+Pass:	3	Gain:	56
+Pass:	4	Gain:	112
+Pass:	5	Gain:	108
+Pass:	6	Gain:	112
+Pass:	7	Gain:	84
+Pass:	8	Gain:	52
+Pass:	9	Gain:	68
+Pass:	10	Gain:	32
+Pass:	11	Gain:	20
+Pass:	12	Gain:	4
+Pass:	13	Gain:	2
+Pass:	14	Gain:	10
+Pass:	15	Gain:	4
+Pass:	16	Gain:	8
+
+#Total passes:	17	Cumulative gain:	2840
+-----------------------------------------
+
+Cut size: 1212 
+
+The total times taken to run: 0.806656 

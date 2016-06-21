@@ -1,0 +1,51 @@
+Initial cut size:	49904 
+Pass:	0   Gain:	27460
+Pass:	1   Gain:	2992
+Pass:	2   Gain:	1836
+Pass:	3   Gain:	368
+Pass:	4   Gain:	448
+Pass:	5   Gain:	104
+Pass:	6   Gain:	88
+Pass:	7   Gain:	80
+Pass:	8   Gain:	84
+Pass:	9   Gain:	36
+Pass:	10  Gain:	56
+Pass:	11  Gain:	48
+Pass:	12  Gain:	140
+Pass:	13  Gain:	344
+Pass:	14  Gain:	252
+Pass:	15  Gain:	216
+Pass:	16  Gain:	136
+Pass:	17  Gain:	154
+Pass:	18  Gain:	124
+Pass:	19  Gain:	112
+Pass:	20  Gain:	84
+Pass:	21  Gain:	40
+Pass:	22  Gain:	44
+Pass:	23  Gain:	40
+Pass:	24  Gain:	56
+Pass:	25  Gain:	32
+Pass:	26  Gain:	20
+Pass:	27  Gain:	16
+Pass:	28  Gain:	12
+Pass:	29  Gain:	12
+Pass:	30  Gain:	12
+Pass:	31  Gain:	20
+Pass:	32  Gain:	12
+Pass:	33  Gain:	12
+Pass:	34  Gain:	4
+Pass:	35  Gain:	14
+Pass:	36  Gain:	12
+Pass:	37  Gain:	16
+Pass:	38  Gain:	8
+Pass:	39  Gain:	4
+Pass:	40  Gain:	4
+Pass:	41  Gain:	4
+Pass:	42  Gain:	8
+
+#Total passes:		43	Cumulative gain:	35564
+-----------------------------------------
+
+Cut size: 14348 
+
+The total times taken to run: 7998.921985
